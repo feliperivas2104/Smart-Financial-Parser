@@ -1,9 +1,9 @@
 # Smart Financial Parser  
 Normalize messy financial transaction data and generate a spending summary via a simple CLI.
 
-This tool ingests intentionally chaotic financial data—including inconsistent dates, varied merchant naming conventions, and messy currency formats—and produces a clean, standardized dataset along with a report identifying top spending categories.
+This tool gets a chaotic financial data, which includes: inconsistent dates, different types of names for things purchased, and differing currency formats. It then produces anorganized dataset along with a report identifying top spending categories.
 
-This project is submitted as part of Option 2: **Smart Financial Parser** for the Palo Alto Networks Intern Engineer Challenge.
+This project is submitted as Option 2: **Smart Financial Parser**.
 
 ---
 
@@ -12,14 +12,15 @@ This project is submitted as part of Option 2: **Smart Financial Parser** for th
 ## Robust CSV ingestion  
 - Validates required columns (`date`, `merchant`, `amount`)  
 - Clear error messages for missing files or malformed input  
+- Outputs something as other if it doesn't fit within a category
 
 ## Normalization of messy real-world data  
-- **Date normalization:** Handles ISO, US, human-readable formats, and fuzzy text  
-- **Amount normalization:** Cleans currency symbols, text (`USD`), thousand separators, and negative formats  
-- Drops invalid rows gracefully with warnings — never crashes  
+- **Date normalization:** Handles different formats and fuzzy text  
+- **Amount normalization:** Cleans currency symbols, text (`USD`), and negative numbers  
+- Drops invalid rows with warnings — never crashes  
 
 ## Merchant categorization  
-Maps canonicalized merchant names into high-level categories using rule-based logic:
+Maps canonicalized merchant names into categories using  simple logic:
 - Transport  
 - Coffee  
 - Shopping  
@@ -30,19 +31,19 @@ Maps canonicalized merchant names into high-level categories using rule-based lo
 ## Analysis  
 - Computes total spending per category using absolute values  
 - Identifies the top spending category  
-- Prints a clean, readable spending report  
+- Prints a clean spending report in descending order.
 
 ## Command-Line Interface  
 Example:
 ```bash
 python3 main.py data/transactions_raw.csv
 python3 main.py data/transactions_raw.csv --output-clean data/cleaned.csv
+```
 
-## 🧠 Methodology (AI Usage Disclosure)
+## Methodology AI Usage
 
-I used AI tools — primarily **Cursor AI** and **ChatGPT** — to assist with drafting parts of the code, generating ideas for handling messy data, and helping structure documentation.
+I used AI tools (ChatGPT) to assist with drafting parts of the code, to help structure documentation, to help me with the test cases since it has been a while since i've done them, and to generate a list of dummy data to actually test what was being output.
 
-All AI-generated suggestions were **manually reviewed, rewritten, and tested by me**. I refactored the logic, verified behavior against edge cases, and validated everything using the full pytest suite plus manual testing of the CLI.
+I reviewed all the ai suggestions presented to me and I verified behavior with every edge case.
 
-AI helped accelerate development, but **I take full responsibility for the correctness, safety, and maintainability of the final implementation**. This aligns with Palo Alto Networks’ expectation of using modern tools for leverage while ensuring engineering rigor and ownership.
 

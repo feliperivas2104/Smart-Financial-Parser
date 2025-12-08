@@ -1,4 +1,4 @@
-"""Analysis functions for computing spending summaries and top categories."""
+"""Analysis functions for finding spending summaries and top categories."""
 
 from typing import Dict, Tuple
 import pandas as pd
@@ -6,10 +6,10 @@ import pandas as pd
 
 def compute_spending_by_category(df: pd.DataFrame) -> Dict[str, float]:
     """
-    Compute total spending per category using absolute values of amounts.
+    Calculate total amount of spending per category using absolute values.
     
     Args:
-        df: DataFrame with 'category' and 'amount' columns
+        DataFrame with 'category' and 'amount' columns
         
     Returns:
         Dictionary mapping category names to total spending (absolute values)
@@ -17,7 +17,7 @@ def compute_spending_by_category(df: pd.DataFrame) -> Dict[str, float]:
     if df.empty or 'category' not in df.columns or 'amount' not in df.columns:
         return {}
     
-    # Use absolute values to handle both debits and credits consistently
+    # Use absolute values to handle both debits and credits
     df_copy = df.copy()
     df_copy['amount_abs'] = df_copy['amount'].abs()
     
@@ -34,7 +34,7 @@ def get_top_spending_category(df: pd.DataFrame) -> Optional[Tuple[str, float]]:
     Identify the top spending category and its total amount.
     
     Args:
-        df: DataFrame with 'category' and 'amount' columns
+        DataFrame with 'category' and 'amount' columns
         
     Returns:
         Tuple of (category_name, total_amount) or None if no data
@@ -64,7 +64,7 @@ def print_spending_report(df: pd.DataFrame) -> None:
     
     print("\n=== Spend by category ===")
     
-    # Sort by amount (descending) for better readability
+    # Sort in descending order (easier to read)
     sorted_spending = sorted(spending.items(), key=lambda x: x[1], reverse=True)
     
     for category, amount in sorted_spending:
